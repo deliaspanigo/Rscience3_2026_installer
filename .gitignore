@@ -1,0 +1,17 @@
+# Ignorar las carpetas pesadas por completo
+/App/
+/RMedic3/
+/img/
+/Output/
+
+# Ignorar archivos de sistema
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Mantener solo los archivos de configuración y scripts
+!Lanzar_RMedic3.bat
+!Lanzar_RMedic3.vbs
+!Compilador_RMedic3.iss
+!README.md
+!.gitignore
