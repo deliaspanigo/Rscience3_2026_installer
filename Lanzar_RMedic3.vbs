@@ -1,4 +1,12 @@
 Set WshShell = CreateObject("WScript.Shell")
-' Simplemente ejecuta el archivo .bat que está en la misma carpeta
-' El 0 oculta la ventana, el True/False indica si esperar a que termine
-WshShell.Run "cmd /c Lanzar_RMedic3.bat", 0, False
+strPath = WshShell.CurrentDirectory
+
+' Construimos la ruta al ejecutable de R
+RScript = Chr(34) & strPath & "\App\R-Portable\bin\Rscript.exe" & Chr(34)
+
+' Construimos el argumento de R (todo el código Shiny)
+RCommand = "-e " & Chr(34) & "options(browser = function(url) { chrome <- 'C:/Program Files/Google/Chrome/Application/chrome.exe'; edge <- 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'; if (file.exists(chrome)) { system(paste0(shQuote(chrome), ' --app=', url), wait = FALSE) } else if (file.exists(edge)) { system(paste0(shQuote(edge), ' --app=', url), wait = FALSE) } else { browseURL(url) } }); setwd('RMedic3'); source('.Rprofile'); shiny::runApp(launch.browser=TRUE)" & Chr(34)
+
+' Ejecutamos directamente Rscript con el parámetro 0 (invisible)
+WshShell.Run RScript & " " & RCommand, 0, False
+Set WshShell = Nothing
