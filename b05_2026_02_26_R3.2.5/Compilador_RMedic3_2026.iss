@@ -1,8 +1,8 @@
 [Setup]
 AppId={{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}
 AppName=RMedic3
-AppVersion=3.2.6
-DefaultDirName={localappdata}\RMedic3_3.2.6
+AppVersion=3.2.5
+DefaultDirName={localappdata}\RMedic3_3.2.5
 DisableDirPage=no
 AppendDefaultDirName=yes
 DefaultGroupName=RMedic3
@@ -10,7 +10,7 @@ UninstallDisplayIcon={app}\img\logo.ico
 Compression=lzma2
 SolidCompression=yes
 OutputDir=Output
-OutputBaseFilename=RMedic3_2026_v3.2.6
+OutputBaseFilename=RMedic3_2026_v3.2.5
 PrivilegesRequired=lowest
 SetupIconFile=img\logo.ico
 

@@ -2,7 +2,6 @@
 setlocal enabledelayedexpansion
 
 :: 1. Configuration
-:: ---------------------------------------------------
 cd /d "%~dp0"
 set "PORT=1410"
 set "R_PATH=%~dp0App\R-Portable\bin\Rscript.exe"
@@ -14,7 +13,6 @@ echo  Starting RMedic v.3.2.6
 echo ---------------------------------------------------
 
 :: 2. AGGRESSIVE MODE: Free port if occupied
-:: ---------------------------------------------------
 echo Checking port !PORT!...
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr :!PORT! ^| findstr LISTENING') do (
     echo Port busy by PID %%a. Killing process...
@@ -22,13 +20,10 @@ for /f "tokens=5" %%a in ('netstat -aon ^| findstr :!PORT! ^| findstr LISTENING'
 )
 
 :: 3. Launch R in BACKGROUND
-:: ---------------------------------------------------
 echo Loading libraries and modules...
-:: Note: The browser launch is now handled by app.R (onStart)
 start /b "" "%R_PATH%" -e ".libPaths('%RENV_LIB:\=\\%'); shiny::runApp(appDir='%APP_DIR:\=\\%', port=!PORT!, launch.browser=FALSE)"
 
 :: 4. Wait Loop: Monitor Port Status
-:: ---------------------------------------------------
 echo Waiting for server response...
 :loop
 netstat -ano | findstr :!PORT! | findstr LISTENING >nul 2>&1
@@ -39,12 +34,12 @@ if %errorlevel% neq 0 (
 )
 
 :: 5. Success
-:: ---------------------------------------------------
 echo.
 echo [OK] Server detected on port !PORT!
-echo RMedic is now running.
+echo Opening interface in Microsoft Edge...
+start msedge --app=http://127.0.0.1:!PORT! --start-maximized
+
 echo ---------------------------------------------------
 echo RMedic is active. Close the browser to exit.
 echo ---------------------------------------------------
-:: The script stays open here to keep the R session alive in the background
 pause >nul
