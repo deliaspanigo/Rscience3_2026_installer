@@ -8,7 +8,7 @@ git commit -m "Upgrade to v.3.3.0: Windows installer."
 git push origin main
 
 # 4. Crea una etiqueta anotada para la versión 3.2.6
-git tag -a v.3.3.0 -m Windows installer."
+git tag -a v.3.3.0 -m "Windows installer."
 
 # 5. Sube la etiqueta a GitHub
 git push origin v.3.3.0
